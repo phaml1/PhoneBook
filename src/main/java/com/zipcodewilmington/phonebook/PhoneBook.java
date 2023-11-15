@@ -27,9 +27,7 @@ public class PhoneBook {
 
     public void addAll(String name, String... phoneNumbers) {
         ArrayList<String> additions = new ArrayList<>();
-        for (String phoneNumber : phoneNumbers) {
-            additions.add(phoneNumber);
-        }
+        additions.addAll(Arrays.asList(phoneNumbers));
         //Map<String, List<String>> additions = new HashMap<>();
         //additions.put(name, );
         this.phonebook.put(name, additions);
