@@ -1,7 +1,7 @@
 package com.zipcodewilmington.phonebook;
 
 import java.util.*;
-//import java.util.HashMap;
+import java.util.HashMap;
 
 
 /**
@@ -16,36 +16,50 @@ public class PhoneBook {
         this.phonebook = map;
     }
 
-    public PhoneBook() {
-        this(new HashMap<>());
-    }
+    public PhoneBook() {this.phonebook = new LinkedHashMap<>();}
+
 
     public void add(String name, String phoneNumber) {
-        //this.phonebook.put();
+        ArrayList<String> nameAndPhone = new ArrayList<>();
+        nameAndPhone.add(phoneNumber);
+        this.phonebook.put(name, nameAndPhone);
     }
 
     public void addAll(String name, String... phoneNumbers) {
-        //this.phonebook.putAll();
+        ArrayList<String> additions = new ArrayList<>();
+        for (String phoneNumber : phoneNumbers) {
+            additions.add(phoneNumber);
+        }
+        //Map<String, List<String>> additions = new HashMap<>();
+        //additions.put(name, );
+        this.phonebook.put(name, additions);
     }
 
     public void remove(String name) {
+        this.phonebook.remove(name);
     }
 
     public Boolean hasEntry(String name) {
-        return null;
+        return phonebook.containsKey(name);
     }
 
     public List<String> lookup(String name) {
-        return null;
+        return phonebook.get(name);
     }
 
     public String reverseLookup(String phoneNumber)  {
+        for(String name: phonebook.keySet()){
+            if(phonebook.get(name).contains(phoneNumber)){
+                return name;
+            }
+        }
         return null;
     }
 
     public List<String> getAllContactNames() {
-        return null;
+        return new ArrayList<>(phonebook.keySet());
     }
+
 
     public Map<String, List<String>> getMap() {
         return phonebook;
